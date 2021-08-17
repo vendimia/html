@@ -114,7 +114,8 @@ class Tag implements ArrayAccess
     /**
       * Adds content to this tag
       */
-    public function content($content): self {
+    public function setContent($content): self 
+    {
         $this->content = $content;
         return $this;
     }
