@@ -2,7 +2,6 @@
     "name": "vendimia/html",
     "description": "HTML handling classes",
     "keywords": ["html"],
-    "version": "0.1",
     "license": "GPL-3.0-or-later",
     "require": {
         "php": ">=8.0"
