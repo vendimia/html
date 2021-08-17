@@ -114,12 +114,16 @@ class Tag implements ArrayAccess
     /**
       * Adds content to this tag
       */
-    public function setContent($content): self 
+    public function setContent($content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
+    /**
+     * Shorthand for create a tag using static method name.
+     */
     public static function __callStatic($name, $attributes)
     {
         $content = null;
@@ -130,14 +134,17 @@ class Tag implements ArrayAccess
         return new self($name, $attributes, $content);
     }
 
+    /**
+     * Shorthand for add a tag content.
+     */
     public function __invoke($content): self
     {
-        $this->content = $content;
+        $this->setContent($content);
 
         return $this;
     }
 
-    /** 
+    /**
      * Forces drawing the close tag, even if there is no content.
      */
     public function closeTag(): self
@@ -147,8 +154,8 @@ class Tag implements ArrayAccess
         return $this;
     }
 
-    /** 
-     * Draws only the open tag
+    /**
+     * Renders only the open tag
      */
     public function onlyOpenTag(): self
     {
@@ -157,7 +164,7 @@ class Tag implements ArrayAccess
         return $this;
     }
 
-    /** 
+    /**
      * Prevents convert special chars to html entities in content
      */
     public function noEscapeContent(): self
@@ -167,7 +174,7 @@ class Tag implements ArrayAccess
         return $this;
     }
 
-    /** 
+    /**
      * Prevents convert special chars to html entities in attributes value
      */
     public function noEscapeAttributes(): self
@@ -178,7 +185,7 @@ class Tag implements ArrayAccess
     }
 
     /**
-     * Returns the HTML tag in string context
+     * Returns the HTML tag in a string context
      */
     public function __toString()
     {
