@@ -188,16 +188,25 @@ class Tag implements ArrayAccess
     // ArrayAccess
 
     /**
-     * Añade una variable
+     * Adds an HTML attribute
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->attributes[$offset] = $value;
     }
+
     /**
-     * Obtiene una variable. No se para qué...
+     * Not needed.
      */
-    public function offsetGet($offset) {}
-    public function offsetExists ($offset) {}
-    public function offsetUnset ($offset) {}
+    public function offsetGet($offset): mixed {}
+
+    /**
+     * Not needed.
+     */
+    public function offsetExists ($offset): bool {}
+
+    /**
+     * Not needed.
+     */
+    public function offsetUnset ($offset): void {}
 }
