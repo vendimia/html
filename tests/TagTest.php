@@ -42,6 +42,12 @@ final class TagTest extends TestCase
         $this->assertEquals('<button type="submit">Save</button>', (string)$tag);
     }
 
+    public function testCreateTagWithContentUsingMethod()
+    {
+        $tag = Tag::i()->setContent("Italic");
+        $this->assertEquals('<i>Italic</i>', (string)$tag);
+    }
+
     public function testAddPropertiesUsingArrayAccess()
     {
         $tag = new Tag('textarea');
@@ -55,11 +61,11 @@ final class TagTest extends TestCase
     {
         $tag = new Tag('p', content: "This is a <p> tag");
         $this->assertEquals('<p>This is a &lt;p&gt; tag</p>', (string)$tag);
-    }    
+    }
 
     public function testUnescapeHtmlContentAndStaticCall()
     {
         $tag = Tag::p("It's <strong>bold</strong>")->noEscapeContent();
         $this->assertEquals("<p>It's <strong>bold</strong></p>", (string)$tag);
-    }    
+    }
 }
