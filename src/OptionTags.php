@@ -14,7 +14,6 @@ class OptionTags
         private array $disable_list = [],
     )
     {
-
     }
 
     /**
@@ -29,12 +28,10 @@ class OptionTags
 
         foreach ($this->options as $id => $value) {
             if (is_array ($value)) {
-
-                // Creamos un grupo
-                $html .= Tag::optgroup (
-                    self::options ($value, $enable),
-                    ['label' => $id])->noEscapeContent() // Sin entidades
-                    . PHP_EOL;
+                $html .= Tag::optgroup(label: $id)
+                    ->setContent(new self($value, $this->select_list, $this->disable_list))
+                    ->noEscapeContent()
+                ;
             } else {
                 $vars = [];
 
@@ -48,7 +45,7 @@ class OptionTags
                 if ($this->disable_list && in_array($id, $this->disable_list)) {
                     $vars['disabled'] = 'true';
                 }
-                
+
 
                 $html .= Tag::option(...$vars)
                     ->setContent($value)
