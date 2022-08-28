@@ -74,11 +74,15 @@ class Tag implements ArrayAccess
                 }
 
                 // Escapamos?
-                if ($this->options['escapeattributes']) {
-                    $value = addslashes(htmlspecialchars($value));
-                }
+                if (is_null($value)) {
+                    $params[] = $name;
+                } else {
+                    if ($this->options['escapeattributes']) {
+                        $value = addslashes(htmlspecialchars($value));
+                    }
 
-                $params[] = $name . '="' . $value . '"';
+                    $params[] = $name . '="' . $value . '"';
+                }
             }
 
             $tag .= ' ' . join (' ', $params );
