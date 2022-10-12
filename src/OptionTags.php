@@ -10,8 +10,8 @@ class OptionTags
 {
     public function __construct(
         private array $options,
-        private array $select_list = [],
-        private array $disable_list = [],
+        private array $selected_list = [],
+        private array $disabled_list = [],
     )
     {
     }
@@ -29,7 +29,7 @@ class OptionTags
         foreach ($this->options as $id => $value) {
             if (is_array ($value)) {
                 $html .= Tag::optgroup(label: $id)
-                    ->setContent(new self($value, $this->select_list, $this->disable_list))
+                    ->setContent(new self($value, $this->selected_list, $this->disabled_list))
                     ->noEscapeContent()
                 ;
             } else {
@@ -39,10 +39,10 @@ class OptionTags
                     $vars['value'] =  $id;
                 }
 
-                if ($this->select_list && in_array($id, $this->select_list)) {
+                if ($this->selected_list && in_array($id, $this->selected_list)) {
                     $vars['selected'] = 'true';
                 }
-                if ($this->disable_list && in_array($id, $this->disable_list)) {
+                if ($this->disabled_list && in_array($id, $this->disabled_list)) {
                     $vars['disabled'] = 'true';
                 }
 

@@ -34,7 +34,7 @@ final class OptionTagsTest extends TestCase
         $options = new OptionTags([
             'p' => 'Person',
             'c' => 'Company',
-        ], select_list:['p']);
+        ], selected_list:['p']);
 
         $this->assertEquals(
             '<option value="p" selected="true">Person</option><option value="c">Company</option>',
@@ -53,7 +53,7 @@ final class OptionTagsTest extends TestCase
                 'd' => 'Dogs',
                 'b' => 'Birds',
             ]
-        ], select_list:['p']);
+        ], selected_list:['p']);
 
         $this->assertEquals(
             '<optgroup label="humans"><option value="p" selected="true">Person</option><option value="c">Company</option></optgroup><optgroup label="animals"><option value="d">Dogs</option><option value="b">Birds</option></optgroup>',
